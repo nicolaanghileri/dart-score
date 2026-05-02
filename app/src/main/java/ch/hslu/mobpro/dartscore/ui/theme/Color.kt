@@ -18,3 +18,9 @@ val DartRed = Color(0xFFD32F2F)
 val Gray100 = Color(0xFFF5F5F5)  // Hintergründe
 val Gray400 = Color(0xFFBDBDBD)  // Borders
 val Gray600 = Color(0xFF757575)  // Subtitles
+
+// Bottom Navigation
+val BottomNavSelected = Color(0xFFEDEFF3)
+val BottomNavNormal = Color.Transparent
+val BottomNavSelectedContent = Black
+val BottomNavNormalContent = Color(0xFF737684)
