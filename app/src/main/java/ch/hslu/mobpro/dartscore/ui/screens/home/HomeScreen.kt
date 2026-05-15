@@ -27,14 +27,14 @@ import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavHostController
 import ch.hslu.mobpro.dartscore.ui.screens.home.components.GameModeCard
 import ch.hslu.mobpro.dartscore.ui.screens.home.components.PlayerInputField
 import ch.hslu.mobpro.dartscore.ui.theme.DartScoreTheme
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 
 @Composable
 fun HomeScreen(
@@ -54,6 +54,7 @@ fun HomeScreen(
         modifier = modifier
             .padding(16.dp)
             .fillMaxSize()
+            .verticalScroll(rememberScrollState())
     ){
         Text(
             text = "New Darts Game",
@@ -64,7 +65,10 @@ fun HomeScreen(
             columns = GridCells.Fixed(2),
             horizontalArrangement = Arrangement.spacedBy(8.dp),
             verticalArrangement = Arrangement.spacedBy(8.dp),
-            modifier = Modifier.weight(1f),
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(400.dp),
+            userScrollEnabled = false
         ) {
             items(gameModes) { (icon, title, subtitle) ->
                 GameModeCard(
@@ -103,7 +107,7 @@ fun HomeScreen(
         Spacer(Modifier.height(8.dp))
 
         Button(
-            onClick = { /* TNavigation zum GameScreen */ },
+            onClick = {},
             modifier = Modifier.fillMaxWidth(),
             colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.surface)
         ) {
@@ -112,6 +116,7 @@ fun HomeScreen(
         }
     }
 }
+
 
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
