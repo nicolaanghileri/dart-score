@@ -20,7 +20,7 @@ import kotlinx.coroutines.asExecutor
         PlayerEntity::class,
         RoundEntity::class
     ],
-    version = 1
+    version = 2
 )
 abstract class DartScoreDatabase : RoomDatabase() {
 
@@ -44,6 +44,7 @@ abstract class DartScoreDatabase : RoomDatabase() {
                 )
                 .setQueryExecutor(ioDispatcherExecutor)
                 .setTransactionExecutor(ioDispatcherExecutor)
+                .fallbackToDestructiveMigration(true)  // Remove this in production
                 .build()
         }
     }

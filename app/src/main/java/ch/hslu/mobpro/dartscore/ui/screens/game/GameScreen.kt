@@ -7,7 +7,9 @@ import androidx.navigation.NavHostController
 
 @Composable
 fun GameScreen(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    navController: NavHostController,
+    gameId: Int
 ){
     Text("Game")
 }

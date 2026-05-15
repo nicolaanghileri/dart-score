@@ -11,13 +11,15 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun PlayerInputField(
     value: String,
+    modifier: Modifier = Modifier,
     onValueChange: (String) -> Unit,
+
 ){
     OutlinedTextField(
         value = value,
         onValueChange = onValueChange,
         placeholder = { Text("Player X")},
-        modifier = Modifier.fillMaxWidth(),
+        modifier = modifier.fillMaxWidth(),
         shape = RoundedCornerShape(12.dp),
         singleLine = true
     )

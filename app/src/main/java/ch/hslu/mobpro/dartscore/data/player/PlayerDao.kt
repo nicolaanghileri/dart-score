@@ -10,6 +10,8 @@ interface PlayerDao {
 
     @Insert
     suspend fun insertPlayer(player: PlayerEntity)
+    @Insert
+    suspend fun insertPlayers(players: List<PlayerEntity>)
 
     @Delete
     suspend fun deletePlayer(player: PlayerEntity)

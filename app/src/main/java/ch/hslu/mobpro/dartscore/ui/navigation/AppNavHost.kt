@@ -3,8 +3,10 @@ package ch.hslu.mobpro.dartscore.ui.navigation
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.navArgument
 import ch.hslu.mobpro.dartscore.ui.screens.game.GameScreen
 import ch.hslu.mobpro.dartscore.ui.screens.home.HomeScreen
 import ch.hslu.mobpro.dartscore.ui.screens.stats.StatsScreen
@@ -21,11 +23,23 @@ fun AppNavHost(
         startDestination = AppScreens.HOME.name
     ) {
         composable(route = AppScreens.HOME.name) {
-            HomeScreen()
+            HomeScreen(modifier, navController)
         }
 
-        composable(route = AppScreens.GAME.name) {
-            GameScreen()
+        composable(
+            route = "${AppScreens.GAME.name}/{gameId}",
+            arguments = listOf(
+                navArgument("gameId") {
+                    type = NavType.IntType
+                }
+            )
+        ) { backStackEntry ->
+            val gameId = backStackEntry.arguments?.getString("gameId")
+            GameScreen(
+                modifier,
+                navController,
+                gameId = gameId?.toInt() ?: 0
+            )
         }
 
         composable(route = AppScreens.STATS.name) {

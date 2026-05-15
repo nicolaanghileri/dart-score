@@ -6,7 +6,6 @@ import androidx.room.Index
 import androidx.room.PrimaryKey
 import ch.hslu.mobpro.dartscore.data.player.PlayerEntity
 
-
 @Entity(
     tableName = "game",
     foreignKeys = [
@@ -23,9 +22,9 @@ import ch.hslu.mobpro.dartscore.data.player.PlayerEntity
 )
 data class GameEntity(
     @PrimaryKey(autoGenerate = true)
-    val id: Int,
+    val id: Int = 0,
     val date: Long,
     val type: String,
     val status: String,
-    val winner_player_id: Int
+    val winner_player_id: Int? = null
 )

@@ -8,7 +8,7 @@ import androidx.room.Query
 @Dao
 interface GameDao {
     @Insert
-    suspend fun insertGame(game: GameEntity)
+    suspend fun insertGame(game: GameEntity): Long
 
     @Delete
     suspend fun deleteGame(game: GameEntity)
