@@ -17,9 +17,6 @@ interface PlayerDao {
     @Query("UPDATE player SET score = :score WHERE id = :playerId")
     suspend fun updatePlayerScore(playerId: Int, score: Int)
 
-    @Query("UPDATE player SET is_winner = :isWinner WHERE id = :playerId")
-    suspend fun updatePlayerWinner(playerId: Int, isWinner: Boolean)
-
     @Query("SELECT * FROM player WHERE game_id = :gameId")
     suspend fun getPlayersByGameId(gameId: Int): List<PlayerEntity>
 

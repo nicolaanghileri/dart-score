@@ -23,8 +23,7 @@ import ch.hslu.mobpro.dartscore.data.game.GameEntity
 data class PlayerEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
-    val game_id: Int,
     val name: String,
     val score: Int,
-    val is_winner: Boolean
+    val game_id: Int,
 )
