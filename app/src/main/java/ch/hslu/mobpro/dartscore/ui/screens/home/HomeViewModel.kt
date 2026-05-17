@@ -6,6 +6,7 @@ import ch.hslu.mobpro.dartscore.data.game.GameEntity
 import ch.hslu.mobpro.dartscore.data.player.PlayerEntity
 import ch.hslu.mobpro.dartscore.data.repository.GameRepository
 import ch.hslu.mobpro.dartscore.data.repository.PlayerRepository
+import ch.hslu.mobpro.dartscore.ui.screens.game.GameRules
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -24,29 +25,14 @@ class HomeViewModel @Inject constructor(
         onSuccess: (Int) -> Unit,
         onError: (String) -> Unit
     ) {
+        val error = PlayerValidator.validatePlayerNames(playerNames)
+        if (error != null) {
+            onError(error)
+            return
+        }
+
         val cleanedNames = playerNames.map { it.trim() }
-        if (cleanedNames.any { it.isBlank() }) {
-            onError("Player name cannot be empty")
-            return
-        }
-
-        if (cleanedNames.any {  it.length < 3 }) {
-            onError("Player names must have at least 3 characters")
-            return
-        }
-        if (cleanedNames.size < 2) {
-            onError("At least 2 players are required")
-            return
-        }
-
-        val hasDuplicates = cleanedNames
-            .map { it.lowercase() }
-            .distinct()
-            .size != cleanedNames.size
-        if (hasDuplicates) {
-            onError("Player names must be unique")
-            return
-        }
+        val initialScore = GameRules.initialScore(selectedMode)
 
         viewModelScope.launch {
             try {
@@ -58,8 +44,6 @@ class HomeViewModel @Inject constructor(
 
                 val gameId = gameRepository.insertGame(game).toInt()
 
-                val initialScore = getInitialScore(selectedMode)
-
                 val players = cleanedNames.map { name ->
                     PlayerEntity(
                         name = name,
@@ -69,7 +53,6 @@ class HomeViewModel @Inject constructor(
                 }
 
                 playerRepository.insertPlayers(players)
-
                 onSuccess(gameId)
 
             } catch (e: Exception) {
@@ -78,15 +61,6 @@ class HomeViewModel @Inject constructor(
         }
 
 
-    }
-
-    private fun getInitialScore(selectedMode: String): Int {
-        return when (selectedMode) {
-            "301" -> 301
-            "501" -> 501
-            "701" -> 701
-            else -> 501
-        }
     }
 
 

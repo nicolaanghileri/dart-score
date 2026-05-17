@@ -8,6 +8,9 @@ import ch.hslu.mobpro.dartscore.data.repository.GameRepository
 import ch.hslu.mobpro.dartscore.data.repository.PlayerRepository
 import ch.hslu.mobpro.dartscore.data.repository.RoundRepository
 import ch.hslu.mobpro.dartscore.data.round.RoundEntity
+import ch.hslu.mobpro.dartscore.ui.screens.game.GameRules.DARTS_PER_ROUND
+import ch.hslu.mobpro.dartscore.ui.screens.game.GameRules.isBust
+import ch.hslu.mobpro.dartscore.ui.screens.game.GameRules.padWithZeroes
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -16,39 +19,6 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-data class ScoredDart(
-    val score: Int,
-    val isDouble: Boolean
-)
-
-private fun String.initialScore(): Int {
-    return when (this) {
-        "301" -> 301
-        "701" -> 701
-        else -> 501
-    }
-}
-
-data class GameUiState(
-    val gameType: String = "501",
-    val players: List<PlayerEntity> = emptyList(),
-    val currentPlayerIndex: Int = 0,
-    val currentDarts: List<ScoredDart> = emptyList(),
-    val isLoading: Boolean = true,
-    val isSavingTurn: Boolean = false,
-    val isGameFinished: Boolean = false,
-    val winnerName: String? = null,
-    val errorMessage: String? = null
-) {
-    val currentPlayer: PlayerEntity?
-        get() = players.getOrNull(currentPlayerIndex)
-
-    val currentRoundScore: Int
-        get() = currentDarts.sumOf { it.score }
-
-    val pointsRemaining: Int
-        get() = (currentPlayer?.score ?: gameType.initialScore()) - currentRoundScore
-}
 
 @HiltViewModel
 class GameViewModel @Inject constructor(
@@ -214,18 +184,5 @@ class GameViewModel @Inject constructor(
         }
     }
 
-    private fun isBust(scoreAfterDart: Int, dart: ScoredDart): Boolean {
-        return scoreAfterDart < 0 ||
-            scoreAfterDart == 1 ||
-            (scoreAfterDart == 0 && !dart.isDouble)
-    }
-
-    private fun List<Int>.padWithZeroes(): List<Int> {
-        return this + List(DARTS_PER_ROUND - size) { 0 }
-    }
-
-    private companion object {
-        const val DARTS_PER_ROUND = 3
-    }
 }
 

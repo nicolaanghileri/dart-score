@@ -16,22 +16,6 @@ import java.util.Date
 import java.util.Locale
 import javax.inject.Inject
 
-data class GameSummaryUiModel(
-    val id: Int,
-    val date: String,
-    val playersText: String,
-    val winnerText: String,
-    val throws: Int,
-    val avgScore: Int,
-    val highest: Int
-)
-
-data class StatsUiState(
-    val summaries: List<GameSummaryUiModel> = emptyList(),
-    val isLoading: Boolean = true,
-    val errorMessage: String? = null
-)
-
 @HiltViewModel
 class StatsViewModel @Inject constructor(
     private val gameRepository: GameRepository,
@@ -65,9 +49,9 @@ class StatsViewModel @Inject constructor(
                             date = dateFormatter.format(Date(game.date)),
                             playersText = players.joinToString(" vs ") { it.name },
                             winnerText = winner?.name ?: if (game.status == "finished") "Unknown" else "In progress",
-                            throws = rounds.size * DARTS_PER_ROUND,
-                            avgScore = roundScores.averageOrZero().toInt(),
-                            highest = roundScores.maxOrNull() ?: 0
+                            throws = StatsCalculator.throwCount(rounds.size),
+                            avgScore = StatsCalculator.averageScore(roundScores),
+                            highest = StatsCalculator.highestScore(roundScores)
                         )
                     }
 
@@ -88,12 +72,7 @@ class StatsViewModel @Inject constructor(
         }
     }
 
-    private fun List<Int>.averageOrZero(): Double {
-        return if (isEmpty()) 0.0 else average()
-    }
-
     private companion object {
-        const val DARTS_PER_ROUND = 3
         val dateFormatter = SimpleDateFormat("MMM d, yyyy", Locale.getDefault())
     }
 }
