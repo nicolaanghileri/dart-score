@@ -29,6 +29,7 @@
     <string name="error_could_not_load_stats">Could not load stats</string>
     <string name="no_games_yet">No games yet</string>
     <string name="no_games_body">Finished games will show up here.</string>
+    <string name="games_tracked">%1$d games tracked</string>
 
     <!-- Game Summary Card -->
     <string name="winner_prefix">Winner: %1$s</string>

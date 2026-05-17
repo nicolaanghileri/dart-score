@@ -19,10 +19,12 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
+import ch.hslu.mobpro.dartscore.R
 import ch.hslu.mobpro.dartscore.ui.screens.stats.components.GameSummaryCard
 import ch.hslu.mobpro.dartscore.ui.theme.DartScoreTheme
 
@@ -58,7 +60,7 @@ private fun StatsScreenContent(
 
             uiState.errorMessage != null -> {
                 EmptyStateText(
-                    title = "Could not load stats",
+                    title = stringResource(R.string.error_could_not_load_stats),
                     body = uiState.errorMessage,
                     modifier = Modifier.align(Alignment.Center)
                 )
@@ -66,8 +68,8 @@ private fun StatsScreenContent(
 
             uiState.summaries.isEmpty() -> {
                 EmptyStateText(
-                    title = "No games yet",
-                    body = "Finished games will show up here.",
+                    title = stringResource(R.string.no_games_yet),
+                    body = stringResource(R.string.no_games_body),
                     modifier = Modifier.align(Alignment.Center)
                 )
             }
@@ -96,7 +98,7 @@ private fun StatsScreenContent(
                             Spacer(modifier = Modifier.height(6.dp))
 
                             Text(
-                                text = "${uiState.summaries.size} games tracked",
+                                text = stringResource(R.string.games_tracked, uiState.summaries.size),
                                 style = MaterialTheme.typography.bodyLarge,
                                 color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.62f)
                             )
@@ -160,8 +162,8 @@ private fun StatsScreenContentPreview() {
                     GameSummaryUiModel(
                         id = 1,
                         date = "May 16, 2026",
-                        playersText = "Nico vs Alex",
-                        winnerText = "Nico",
+                        playersText = "Nicola vs Thomas",
+                        winnerText = "Nicola",
                         throws = 24,
                         avgScore = 63,
                         highest = 140
