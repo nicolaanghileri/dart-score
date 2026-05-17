@@ -22,6 +22,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -51,7 +52,7 @@ fun WinScreen(
         Spacer(modifier = Modifier.height(24.dp))
 
         Text(
-            text = "Game finished!",
+            text = stringResource(R.string.game_finished),
             style = MaterialTheme.typography.headlineMedium,
             textAlign = TextAlign.Center
         )
@@ -59,7 +60,7 @@ fun WinScreen(
         Spacer(modifier = Modifier.height(12.dp))
 
         Text(
-            text = "$winnerName wins!",
+            text = stringResource(R.string.winner_wins, winnerName),
             style = MaterialTheme.typography.displaySmall,
             color = MaterialTheme.colorScheme.primary,
             textAlign = TextAlign.Center
@@ -68,7 +69,7 @@ fun WinScreen(
         Spacer(modifier = Modifier.height(12.dp))
 
         Text(
-            text = "Congratulations, great checkout!",
+            text = stringResource(R.string.congratulations_checkout),
             style = MaterialTheme.typography.bodyLarge,
             color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.65f),
             textAlign = TextAlign.Center
@@ -87,7 +88,7 @@ fun WinScreen(
             modifier = Modifier.fillMaxWidth()
         ) {
             Icon(Icons.Default.Home, contentDescription = null)
-            Text(" Back to home")
+            Text(" ${stringResource(R.string.back_to_home)}")
         }
 
         Spacer(modifier = Modifier.height(8.dp))
