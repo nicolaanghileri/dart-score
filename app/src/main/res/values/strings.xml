@@ -1,3 +1,42 @@
 <resources>
     <string name="app_name">DartScore</string>
+
+    <!-- Home Screen -->
+    <string name="new_game">New Game</string>
+    <string name="home_subtitle">Choose a mode and add your players</string>
+    <string name="game_mode_classic_501">Classic 501 game</string>
+    <string name="game_mode_fast_301">Fast 301 game</string>
+    <string name="game_mode_extended_701">Extended 701 game</string>
+    <string name="section_players">Players</string>
+    <string name="player_placeholder">Player %1$d</string>
+    <string name="remove_player">Remove player</string>
+    <string name="add_player">Add Player</string>
+    <string name="start_game">Start Game</string>
+
+    <!-- Game Screen -->
+    <string name="game_type_header">%1$s Game</string>
+    <string name="clear_current_darts">Clear current darts</string>
+    <string name="points_remaining">Points Remaining</string>
+    <string name="game_finished">Game finished</string>
+    <string name="enter_score">Enter score</string>
+    <string name="dart_x_of_3">Dart %1$d of 3</string>
+    <string name="winner_confirmed">Winner confirmed</string>
+    <string name="player_fallback">Player</string>
+
+    <!-- Stats Screen -->
+    <string name="stats_title">Game Stats</string>
+    <string name="games_tracked_count">%1$d games tracked</string>
+    <string name="error_could_not_load_stats">Could not load stats</string>
+    <string name="no_games_yet">No games yet</string>
+    <string name="no_games_body">Finished games will show up here.</string>
+
+    <!-- Game Summary Card -->
+    <string name="winner_prefix">Winner: %1$s</string>
+    <string name="stat_throws">Throws</string>
+    <string name="stat_avg_score">Avg Score</string>
+    <string name="stat_highest">Highest</string>
+
+    <!-- Bottom Navigation -->
+    <string name="nav_game">Game</string>
+    <string name="nav_stats">Stats</string>
 </resources>

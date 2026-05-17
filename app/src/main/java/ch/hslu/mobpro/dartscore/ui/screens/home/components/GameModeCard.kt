@@ -18,8 +18,9 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import ch.hslu.mobpro.dartscore.ui.theme.Gray400
+import ch.hslu.mobpro.dartscore.ui.theme.Transparent
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import ch.hslu.mobpro.dartscore.ui.theme.DartScoreTheme
@@ -30,19 +31,25 @@ fun GameModeCard(
     title: String,
     subtitle: String,
     isSelected: Boolean = false,
+    modifier: Modifier = Modifier,
     onClick: () -> Unit
-
 ) {
+    val contentColor = if (isSelected) MaterialTheme.colorScheme.onPrimary
+                       else MaterialTheme.colorScheme.onSurface
+
     Card(
         onClick = onClick,
-        modifier = Modifier.fillMaxSize().aspectRatio(1f),
-        border = BorderStroke(1.dp, Color.LightGray),
+        modifier = modifier.fillMaxSize().aspectRatio(1f),
+        border = BorderStroke(
+            width = if (isSelected) 0.dp else 1.dp,
+            color = if (isSelected) Transparent else Gray400,
+        ),
         colors = CardDefaults.cardColors(
             containerColor =
                 if (isSelected) MaterialTheme.colorScheme.primary
                 else MaterialTheme.colorScheme.surface
         ),
-    ){
+    ) {
         Column(
             modifier = Modifier.fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally,
@@ -51,26 +58,20 @@ fun GameModeCard(
             Icon(
                 imageVector = icon,
                 contentDescription = title,
-                tint =
-                    if (isSelected) MaterialTheme.colorScheme.onPrimary
-                    else MaterialTheme.colorScheme.onSurface,
-                modifier = Modifier.size(50.dp)
+                tint = contentColor,
+                modifier = Modifier.size(40.dp)
             )
 
             Text(
                 text = title,
-                fontSize = 30.sp,
+                style = MaterialTheme.typography.headlineSmall,
                 fontWeight = FontWeight.Bold,
-                color =
-                    if (isSelected) MaterialTheme.colorScheme.onPrimary
-                    else MaterialTheme.colorScheme.onSurface,
+                color = contentColor,
             )
             Text(
                 text = subtitle,
-                fontSize = 12.sp,
-                color =
-                    if (isSelected) MaterialTheme.colorScheme.onPrimary
-                    else MaterialTheme.colorScheme.onSurface,
+                style = MaterialTheme.typography.labelSmall,
+                color = contentColor.copy(alpha = if (isSelected) 0.85f else 0.6f),
             )
         }
     }

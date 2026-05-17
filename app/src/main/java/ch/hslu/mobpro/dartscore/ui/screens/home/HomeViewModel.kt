@@ -1,15 +1,17 @@
 package ch.hslu.mobpro.dartscore.ui.screens.home
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import ch.hslu.mobpro.dartscore.data.game.GameEntity
 import ch.hslu.mobpro.dartscore.data.player.PlayerEntity
 import ch.hslu.mobpro.dartscore.data.repository.GameRepository
 import ch.hslu.mobpro.dartscore.data.repository.PlayerRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class HomeViewModel (
+@HiltViewModel
+class HomeViewModel @Inject constructor(
     private val gameRepository: GameRepository,
     private val playerRepository: PlayerRepository
 ) : ViewModel() {
@@ -83,7 +85,6 @@ class HomeViewModel (
             "301" -> 301
             "501" -> 501
             "701" -> 701
-            "Cricket" -> 0
             else -> 501
         }
     }
@@ -92,16 +93,3 @@ class HomeViewModel (
 }
 
 
-class HomeViewModelFactory(
-    private val gameRepository: GameRepository,
-    private val playerRepository: PlayerRepository
-) : ViewModelProvider.Factory {
-
-    @Suppress("UNCHECKED_CAST")
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(HomeViewModel::class.java)) {
-            return HomeViewModel(gameRepository, playerRepository) as T
-        }
-        throw IllegalArgumentException("Unknown ViewModel class")
-    }
-}

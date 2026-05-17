@@ -12,7 +12,6 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.outlined.Backspace
-import androidx.compose.material.icons.outlined.Backspace
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -20,8 +19,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import ch.hslu.mobpro.dartscore.ui.theme.DangerRed
+import ch.hslu.mobpro.dartscore.ui.theme.TileBorder
+import ch.hslu.mobpro.dartscore.ui.theme.Transparent
+import ch.hslu.mobpro.dartscore.ui.theme.White
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import ch.hslu.mobpro.dartscore.ui.theme.DartScoreTheme
@@ -66,24 +68,24 @@ fun ScorePadTile(
     danger: Boolean = false,
     enabled: Boolean = true
 ) {
-    val shape = RoundedCornerShape(14.dp)
+    val shape = RoundedCornerShape(16.dp)
 
     val backgroundColor = when {
-        danger -> Color(0xFFD91445)
+        danger -> DangerRed
         selected -> MaterialTheme.colorScheme.primary
-        else -> MaterialTheme.colorScheme.background
+        else -> White
     }
 
     val contentColor = when {
-        danger -> Color.White
+        danger -> White
         selected -> MaterialTheme.colorScheme.onPrimary
         enabled -> MaterialTheme.colorScheme.onBackground
         else -> MaterialTheme.colorScheme.onBackground.copy(alpha = 0.35f)
     }
 
     val borderColor =
-        if (selected || danger) Color.Transparent
-        else MaterialTheme.colorScheme.onSurface.copy(alpha = 0.12f)
+        if (selected || danger) Transparent
+        else TileBorder
 
     Box(
         modifier = modifier
@@ -109,7 +111,7 @@ fun ScorePadTile(
         } else if (text != null) {
             Text(
                 text = text,
-                style = MaterialTheme.typography.titleMedium,
+                style = MaterialTheme.typography.titleLarge,
                 color = contentColor
             )
         }

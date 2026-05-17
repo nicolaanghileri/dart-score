@@ -27,6 +27,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import ch.hslu.mobpro.dartscore.ui.theme.StatAvgColor
+import ch.hslu.mobpro.dartscore.ui.theme.StatHighestColor
+import ch.hslu.mobpro.dartscore.ui.theme.StatThrowsColor
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import ch.hslu.mobpro.dartscore.ui.theme.DartScoreTheme
@@ -116,21 +119,21 @@ fun GameSummaryCard(
             ) {
                 StatItem(
                     icon = Icons.Outlined.GpsFixed,
-                    iconColor = Color(0xFFFF4D16),
+                    iconColor = StatThrowsColor,
                     value = throws.toString(),
                     label = "Throws"
                 )
 
                 StatItem(
                     icon = Icons.Outlined.QueryStats,
-                    iconColor = Color(0xFF00A887),
+                    iconColor = StatAvgColor,
                     value = avgScore.toString(),
                     label = "Avg Score"
                 )
 
                 StatItem(
                     icon = Icons.Outlined.EmojiEvents,
-                    iconColor = Color(0xFFFF8A00),
+                    iconColor = StatHighestColor,
                     value = highest.toString(),
                     label = "Highest"
                 )

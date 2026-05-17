@@ -51,7 +51,7 @@ fun AppBottomNav(
 ) {
     val items = listOf(
         BottomNavItem(
-            label = "Home",
+            label = "Game",
             icon = Icons.Outlined.Home
         ),
         BottomNavItem(

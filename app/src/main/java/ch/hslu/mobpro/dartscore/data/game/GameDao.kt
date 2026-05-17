@@ -16,6 +16,8 @@ interface GameDao {
     @Query("UPDATE game SET status = :status WHERE id = :gameId")
     suspend fun updateGameStatus(gameId: Int, status: String)
 
+    @Query("UPDATE game SET status = :status, winner_player_id = :winnerPlayerId WHERE id = :gameId")
+    suspend fun finishGame(gameId: Int, winnerPlayerId: Int, status: String)
 
     @Query("SELECT * FROM game")
     suspend fun getAllGames(): List<GameEntity>

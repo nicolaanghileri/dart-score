@@ -24,7 +24,8 @@ fun DartScoreApp() {
     val currentRoute = backStackEntry?.destination?.route
 
     val selectedIndex = when (currentRoute) {
-        AppScreens.HOME.name -> 0
+        AppScreens.HOME.name,
+        "${AppScreens.GAME.name}/{gameId}" -> 0
         AppScreens.STATS.name -> 1
         else -> 0
     }

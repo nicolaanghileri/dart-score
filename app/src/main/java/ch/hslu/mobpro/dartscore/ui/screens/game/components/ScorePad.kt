@@ -27,7 +27,7 @@ fun ScorePadPreview() {
     DartScoreTheme {
         ScorePad(
             modifier = Modifier.padding(16.dp),
-            onScoreClick = {},
+            onScoreClick = { _, _ -> },
             onDeleteClick = {}
         )
     }
@@ -44,7 +44,7 @@ enum class ScoreMultiplier(
 
 @Composable
 fun ScorePad(
-    onScoreClick: (Int) -> Unit,
+    onScoreClick: (score: Int, isDouble: Boolean) -> Unit,
     onDeleteClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -61,11 +61,11 @@ fun ScorePad(
 
     Column(
         modifier = modifier.fillMaxWidth(),
-        verticalArrangement = Arrangement.spacedBy(10.dp)
+        verticalArrangement = Arrangement.spacedBy(6.dp)
     ) {
         Row(
             modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.spacedBy(10.dp)
+            horizontalArrangement = Arrangement.spacedBy(6.dp)
         ) {
             ScoreMultiplier.entries.forEach { multiplier ->
                 ScorePadTile(
@@ -73,7 +73,7 @@ fun ScorePad(
                     selected = selectedMultiplier == multiplier,
                     modifier = Modifier
                         .weight(1f)
-                        .height(58.dp),
+                        .height(46.dp),
                     onClick = {
                         selectedMultiplier = multiplier
                     }
@@ -84,7 +84,7 @@ fun ScorePad(
         rows.forEach { row ->
             Row(
                 modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.spacedBy(10.dp)
+                horizontalArrangement = Arrangement.spacedBy(6.dp)
             ) {
                 row.forEach { target ->
                     ScorePadTile(
@@ -94,7 +94,7 @@ fun ScorePad(
                             .aspectRatio(1f),
                         onClick = {
                             val score = target * selectedMultiplier.value
-                            onScoreClick(score)
+                            onScoreClick(score, selectedMultiplier == ScoreMultiplier.DOUBLE)
                         }
                     )
                 }
@@ -103,7 +103,7 @@ fun ScorePad(
 
         Row(
             modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.spacedBy(10.dp)
+            horizontalArrangement = Arrangement.spacedBy(6.dp)
         ) {
             ScorePadTile(
                 text = "25",
@@ -112,7 +112,10 @@ fun ScorePad(
                     .weight(1f)
                     .aspectRatio(1f),
                 onClick = {
-                    onScoreClick(25 * selectedMultiplier.value)
+                    onScoreClick(
+                        25 * selectedMultiplier.value,
+                        selectedMultiplier == ScoreMultiplier.DOUBLE
+                    )
                 }
             )
 
@@ -122,7 +125,7 @@ fun ScorePad(
                     .weight(1f)
                     .aspectRatio(1f),
                 onClick = {
-                    onScoreClick(0)
+                    onScoreClick(0, false)
                 }
             )
 

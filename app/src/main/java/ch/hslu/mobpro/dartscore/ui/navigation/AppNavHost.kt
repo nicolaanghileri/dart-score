@@ -34,16 +34,16 @@ fun AppNavHost(
                 }
             )
         ) { backStackEntry ->
-            val gameId = backStackEntry.arguments?.getString("gameId")
+            val gameId = backStackEntry.arguments?.getInt("gameId") ?: 0
             GameScreen(
                 modifier,
                 navController,
-                gameId = gameId?.toInt() ?: 0
+                gameId = gameId
             )
         }
 
         composable(route = AppScreens.STATS.name) {
-            StatsScreen()
+            StatsScreen(modifier)
         }
     }
 }
