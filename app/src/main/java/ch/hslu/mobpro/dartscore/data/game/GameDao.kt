@@ -24,4 +24,7 @@ interface GameDao {
 
     @Query("SELECT * FROM game WHERE id = :gameId")
     suspend fun getGameById(gameId: Int): GameEntity?
+
+    @Query("DELETE FROM game WHERE status = 'started'")
+    suspend fun deleteGamesInProgress()
 }

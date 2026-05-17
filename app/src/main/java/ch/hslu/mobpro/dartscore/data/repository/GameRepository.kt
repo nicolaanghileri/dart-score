@@ -27,4 +27,8 @@ class GameRepository @Inject constructor(
             status = "finished"
         )
     }
+
+    suspend fun deleteGamesInProgress(){
+        gameDao.deleteGamesInProgress();
+    }
 }

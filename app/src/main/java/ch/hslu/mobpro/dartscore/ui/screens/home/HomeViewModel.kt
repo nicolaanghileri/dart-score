@@ -36,6 +36,7 @@ class HomeViewModel @Inject constructor(
 
         viewModelScope.launch {
             try {
+                gameRepository.deleteGamesInProgress()
                 val game = GameEntity(
                     date = System.currentTimeMillis(),
                     type = selectedMode,
@@ -59,8 +60,6 @@ class HomeViewModel @Inject constructor(
                 onError(e.message ?: "Could not start game")
             }
         }
-
-
     }
 
 
