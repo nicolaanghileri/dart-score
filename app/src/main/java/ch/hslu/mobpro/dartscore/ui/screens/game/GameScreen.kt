@@ -1,5 +1,6 @@
 package ch.hslu.mobpro.dartscore.ui.screens.game
 
+import android.net.Uri
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -24,6 +25,7 @@ import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -37,15 +39,16 @@ import ch.hslu.mobpro.dartscore.ui.theme.ShadowOverlay
 import ch.hslu.mobpro.dartscore.ui.theme.White
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.platform.LocalContext
+
 import androidx.compose.ui.res.stringResource
 import ch.hslu.mobpro.dartscore.R
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import ch.hslu.mobpro.dartscore.ui.components.AppErrorDialog
+import ch.hslu.mobpro.dartscore.ui.navigation.AppScreens
 import ch.hslu.mobpro.dartscore.ui.screens.game.components.ScorePad
 import ch.hslu.mobpro.dartscore.ui.theme.DartScoreTheme
 
@@ -55,8 +58,20 @@ fun GameScreen(
     navController: NavHostController,
     gameId: Int
 ){
-    val gameViewModel: GameViewModel = hiltViewModel()
+    val gameViewModel: GameViewModel = hiltViewModel<GameViewModel>()
     val uiState by gameViewModel.uiState.collectAsState()
+
+    LaunchedEffect(uiState.isGameFinished, uiState.winnerName) {
+        if (uiState.isGameFinished && uiState.winnerName != null) {
+            val encodedWinnerName = Uri.encode(uiState.winnerName)
+
+            navController.navigate("${AppScreens.WIN.name}/$encodedWinnerName") {
+                popUpTo("${AppScreens.GAME.name}/$gameId") {
+                    inclusive = true
+                }
+            }
+        }
+    }
 
     AppErrorDialog(
         message = uiState.errorMessage,
@@ -158,7 +173,7 @@ private fun GameHeader(
     Surface(
         modifier = Modifier
             .fillMaxWidth()
-            .height(228.dp)
+            .height(250.dp)
             .shadow(
                 elevation = 16.dp,
                 shape = shape,

@@ -22,7 +22,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import ch.hslu.mobpro.dartscore.ui.screens.stats.components.GameSummaryCard
 import ch.hslu.mobpro.dartscore.ui.theme.DartScoreTheme
 
@@ -30,7 +30,7 @@ import ch.hslu.mobpro.dartscore.ui.theme.DartScoreTheme
 fun StatsScreen(
     modifier: Modifier = Modifier
 ) {
-    val statsViewModel: StatsViewModel = hiltViewModel()
+    val statsViewModel: StatsViewModel = hiltViewModel<StatsViewModel>()
     val uiState by statsViewModel.uiState.collectAsState()
 
     StatsScreenContent(

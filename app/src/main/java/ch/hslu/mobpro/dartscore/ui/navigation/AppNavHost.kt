@@ -10,6 +10,7 @@ import androidx.navigation.navArgument
 import ch.hslu.mobpro.dartscore.ui.screens.game.GameScreen
 import ch.hslu.mobpro.dartscore.ui.screens.home.HomeScreen
 import ch.hslu.mobpro.dartscore.ui.screens.stats.StatsScreen
+import ch.hslu.mobpro.dartscore.ui.screens.win.WinScreen
 
 @Composable
 fun AppNavHost(
@@ -45,11 +46,28 @@ fun AppNavHost(
         composable(route = AppScreens.STATS.name) {
             StatsScreen(modifier)
         }
+
+        composable(
+            route = "${AppScreens.WIN.name}/{winnerName}",
+            arguments = listOf(
+                navArgument("winnerName") {
+                    type = NavType.StringType
+                }
+            )
+        ) { backStackEntry ->
+            val winnerName = backStackEntry.arguments?.getString("winnerName") ?: ""
+            WinScreen(
+                winnerName,
+                modifier,
+                navController
+            )
+        }
     }
 }
 
 enum class AppScreens {
     HOME,
     GAME,
-    STATS
+    STATS,
+    WIN
 }

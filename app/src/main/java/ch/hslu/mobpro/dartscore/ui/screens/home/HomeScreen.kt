@@ -40,7 +40,7 @@ import androidx.compose.ui.res.stringResource
 import ch.hslu.mobpro.dartscore.R
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import ch.hslu.mobpro.dartscore.ui.components.AppErrorDialog
 import ch.hslu.mobpro.dartscore.ui.navigation.AppScreens
@@ -53,8 +53,7 @@ fun HomeScreen(
     modifier: Modifier = Modifier,
     navController: NavHostController
 ) {
-    val homeViewModel: HomeViewModel = hiltViewModel()
-
+    val homeViewModel: HomeViewModel = hiltViewModel<HomeViewModel>()
     var selectedMode by rememberSaveable { mutableStateOf("501") }
 
     val players = rememberSaveable { mutableStateListOf("", "") }
