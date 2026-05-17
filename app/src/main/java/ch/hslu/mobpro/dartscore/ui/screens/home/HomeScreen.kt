@@ -37,6 +37,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import ch.hslu.mobpro.dartscore.R
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -75,19 +76,32 @@ fun HomeScreen(
 
     Column(
         modifier = modifier
-            .padding(16.dp)
+            .padding(
+                start = 16.dp,
+                top = 24.dp,
+                end = 16.dp,
+                bottom = 112.dp
+            )
             .fillMaxSize()
             .verticalScroll(rememberScrollState())
     ) {
+
         Text(
             text = stringResource(R.string.new_game),
-            style = MaterialTheme.typography.headlineMedium,
+            style = MaterialTheme.typography.headlineMedium.copy(
+                fontWeight = FontWeight.Bold
+            ),
+            color = MaterialTheme.colorScheme.onBackground
         )
+
+        Spacer(modifier = Modifier.height(6.dp))
+
         Text(
             text = stringResource(R.string.home_subtitle),
-            style = MaterialTheme.typography.bodyMedium,
-            color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.55f),
+            style = MaterialTheme.typography.bodyLarge,
+            color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.62f)
         )
+
 
         Spacer(modifier = Modifier.height(20.dp))
 
