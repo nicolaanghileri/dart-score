@@ -30,7 +30,7 @@ Verwendete technische Anforderungen
     - @HiltViewModel + @Inject constructor auf allen ViewModels
     - DatabaseModule stellt DAOs und Repositories als Singletons bereit
 
-  [2 Punkte] Unit Tests
+  [1 Punkt] Unit Tests
     - 6 Testklassen
     - GameViewModelTest: addScore, Bust-Erkennung, Spielabschluss, Dart löschen
     - HomeViewModelTest: startGame-Ablauf, Reihenfolge der DB-Operationen
@@ -39,8 +39,6 @@ Verwendete technische Anforderungen
     - PlayerValidatorTest: Leer, zu kurz, zu wenige Spieler, Duplikate
     - StatsCalculatorTest: averageScore, highestScore, throwCount
     - ViewModels mit UnconfinedTestDispatcher und gemockten Repositories getestet
-
-  Gesamt: 7 Punkte (Minimum: 5 Punkte)
 
 
 Architektur
