@@ -90,7 +90,7 @@ private fun StatsScreenContent(
                     item {
                         Column {
                             Text(
-                                text = "Game Stats",
+                                text = stringResource(R.string.game_stats),
                                 style = MaterialTheme.typography.headlineMedium.copy(
                                     fontWeight = FontWeight.Bold
                                 ),

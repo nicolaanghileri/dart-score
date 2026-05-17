@@ -108,7 +108,7 @@ fun WinScreen(
                 tint = MaterialTheme.colorScheme.onSurface
             )
             Text(
-                text = " View stats",
+                text = stringResource(R.string.view_stats),
                 color = MaterialTheme.colorScheme.onSurface
             )
         }

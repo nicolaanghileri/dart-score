@@ -30,11 +30,13 @@
     <string name="no_games_yet">No games yet</string>
     <string name="no_games_body">Finished games will show up here.</string>
     <string name="games_tracked">%1$d games tracked</string>
+    <string name="game_stats">Game Stats</string>
 
     <!-- Win Screen -->
     <string name="winner_wins">%1$s wins!</string>
     <string name="congratulations_checkout">Congratulations, great checkout!</string>
     <string name="back_to_home">Back to home</string>
+    <string name="view_stats">View stats</string>
 
     <!-- Game Summary Card -->
     <string name="winner_prefix">Winner: %1$s</string>
