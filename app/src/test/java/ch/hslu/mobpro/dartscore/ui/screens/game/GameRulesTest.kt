@@ -1,5 +1,7 @@
 package ch.hslu.mobpro.dartscore.ui.screens.game
 
+import ch.hslu.mobpro.dartscore.domain.game.GameRules
+import ch.hslu.mobpro.dartscore.domain.game.ScoredDart
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue

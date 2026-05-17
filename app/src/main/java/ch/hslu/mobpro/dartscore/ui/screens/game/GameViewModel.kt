@@ -8,9 +8,11 @@ import ch.hslu.mobpro.dartscore.data.repository.GameRepository
 import ch.hslu.mobpro.dartscore.data.repository.PlayerRepository
 import ch.hslu.mobpro.dartscore.data.repository.RoundRepository
 import ch.hslu.mobpro.dartscore.data.round.RoundEntity
-import ch.hslu.mobpro.dartscore.ui.screens.game.GameRules.DARTS_PER_ROUND
-import ch.hslu.mobpro.dartscore.ui.screens.game.GameRules.isBust
-import ch.hslu.mobpro.dartscore.ui.screens.game.GameRules.padWithZeroes
+import ch.hslu.mobpro.dartscore.domain.game.GameUiState
+import ch.hslu.mobpro.dartscore.domain.game.ScoredDart
+import ch.hslu.mobpro.dartscore.domain.game.GameRules.DARTS_PER_ROUND
+import ch.hslu.mobpro.dartscore.domain.game.GameRules.isBust
+import ch.hslu.mobpro.dartscore.domain.game.GameRules.padWithZeroes
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

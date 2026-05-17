@@ -1,5 +1,6 @@
 package ch.hslu.mobpro.dartscore.ui.screens.home
 
+import ch.hslu.mobpro.dartscore.domain.player.PlayerValidator
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNull
 import org.junit.Test

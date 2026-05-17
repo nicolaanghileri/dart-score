@@ -1,4 +1,4 @@
-package ch.hslu.mobpro.dartscore.ui.screens.game
+package ch.hslu.mobpro.dartscore.domain.game
 
 data class ScoredDart(
     val score: Int,

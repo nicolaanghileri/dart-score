@@ -1,6 +1,6 @@
-package ch.hslu.mobpro.dartscore.ui.screens.stats
+package ch.hslu.mobpro.dartscore.domain.stats
 
-import ch.hslu.mobpro.dartscore.ui.screens.game.GameRules
+import ch.hslu.mobpro.dartscore.domain.game.GameRules
 
 object StatsCalculator {
     fun averageScore(roundScores: List<Int>): Int {

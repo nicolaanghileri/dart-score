@@ -25,6 +25,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import ch.hslu.mobpro.dartscore.R
+import ch.hslu.mobpro.dartscore.domain.stats.GameSummaryUiModel
+import ch.hslu.mobpro.dartscore.domain.stats.StatsUiState
 import ch.hslu.mobpro.dartscore.ui.screens.stats.components.GameSummaryCard
 import ch.hslu.mobpro.dartscore.ui.theme.DartScoreTheme
 

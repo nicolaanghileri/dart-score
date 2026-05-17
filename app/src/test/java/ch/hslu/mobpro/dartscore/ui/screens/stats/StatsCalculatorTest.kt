@@ -1,6 +1,7 @@
 package ch.hslu.mobpro.dartscore.ui.screens.stats
 
 
+import ch.hslu.mobpro.dartscore.domain.stats.StatsCalculator
 import org.junit.Assert.assertEquals
 import org.junit.Test
 

@@ -6,7 +6,8 @@ import ch.hslu.mobpro.dartscore.data.game.GameEntity
 import ch.hslu.mobpro.dartscore.data.player.PlayerEntity
 import ch.hslu.mobpro.dartscore.data.repository.GameRepository
 import ch.hslu.mobpro.dartscore.data.repository.PlayerRepository
-import ch.hslu.mobpro.dartscore.ui.screens.game.GameRules
+import ch.hslu.mobpro.dartscore.domain.game.GameRules
+import ch.hslu.mobpro.dartscore.domain.player.PlayerValidator
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject

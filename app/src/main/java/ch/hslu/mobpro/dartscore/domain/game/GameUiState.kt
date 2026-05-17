@@ -1,4 +1,4 @@
-package ch.hslu.mobpro.dartscore.ui.screens.game
+package ch.hslu.mobpro.dartscore.domain.game
 
 import ch.hslu.mobpro.dartscore.data.player.PlayerEntity
 

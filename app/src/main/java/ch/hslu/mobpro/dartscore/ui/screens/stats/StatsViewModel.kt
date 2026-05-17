@@ -5,6 +5,9 @@ import androidx.lifecycle.viewModelScope
 import ch.hslu.mobpro.dartscore.data.repository.GameRepository
 import ch.hslu.mobpro.dartscore.data.repository.PlayerRepository
 import ch.hslu.mobpro.dartscore.data.repository.RoundRepository
+import ch.hslu.mobpro.dartscore.domain.stats.GameSummaryUiModel
+import ch.hslu.mobpro.dartscore.domain.stats.StatsCalculator
+import ch.hslu.mobpro.dartscore.domain.stats.StatsUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -48,7 +51,8 @@ class StatsViewModel @Inject constructor(
                             id = game.id,
                             date = dateFormatter.format(Date(game.date)),
                             playersText = players.joinToString(" vs ") { it.name },
-                            winnerText = winner?.name ?: if (game.status == "finished") "Unknown" else "In progress",
+                            winnerText = winner?.name
+                                ?: if (game.status == "finished") "Unknown" else "In progress",
                             throws = StatsCalculator.throwCount(rounds.size),
                             avgScore = StatsCalculator.averageScore(roundScores),
                             highest = StatsCalculator.highestScore(roundScores)

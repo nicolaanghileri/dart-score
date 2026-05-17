@@ -1,4 +1,4 @@
-package ch.hslu.mobpro.dartscore.ui.screens.stats
+package ch.hslu.mobpro.dartscore.domain.stats
 
 data class StatsUiState(
     val summaries: List<GameSummaryUiModel> = emptyList(),

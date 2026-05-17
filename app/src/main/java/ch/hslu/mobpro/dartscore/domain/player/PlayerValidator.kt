@@ -1,4 +1,4 @@
-package ch.hslu.mobpro.dartscore.ui.screens.home
+package ch.hslu.mobpro.dartscore.domain.player
 
 object PlayerValidator {
     fun validatePlayerNames(names: List<String>): String? {
